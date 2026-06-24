@@ -1,0 +1,22 @@
+# Ignore other sensor areas
+Quality area/
+Sensor Ground/
+Sensor Weather/new/weather.txt
+Sensor Weather/weather.pdf
+Sensor Weather/weather.docx
+Sensor Weather/sensor_id_setup.py*
+Sensor Weather/weather.py
+Sensor Weather/NodeRed.txt
+
+# Ignore root notes
+*.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Operating System
+.DS_Store
+Thumbs.db

@@ -1,0 +1,161 @@
+[
+    {
+        "id": "fa5c5d78e9b4e561",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c39836a73b4ea4f8",
+        "type": "influxdb",
+        "hostname": "192.168.1.152",
+        "port": "32152",
+        "protocol": "http",
+        "database": "solarbrain",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "1.x",
+        "url": "http://localhost:8086",
+        "timeout": 10,
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "2022b8f01db6887e",
+        "type": "json",
+        "z": "fa5c5d78e9b4e561",
+        "name": "Parse JSON",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 690,
+        "y": 300,
+        "wires": [
+            [
+                "062d51a964d199ce",
+                "93730eb47534191a"
+            ]
+        ]
+    },
+    {
+        "id": "062d51a964d199ce",
+        "type": "debug",
+        "z": "fa5c5d78e9b4e561",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "93730eb47534191a",
+        "type": "influxdb out",
+        "z": "fa5c5d78e9b4e561",
+        "influxdb": "c39836a73b4ea4f8",
+        "name": "",
+        "measurement": "weather",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "organisation",
+        "bucket": "bucket",
+        "x": 1020,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "bf09d471d5f0f4a1",
+        "type": "inject",
+        "z": "fa5c5d78e9b4e561",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 380,
+        "wires": [
+            [
+                "4243e122de5e361c"
+            ]
+        ]
+    },
+    {
+        "id": "4243e122de5e361c",
+        "type": "exec",
+        "z": "fa5c5d78e9b4e561",
+        "command": "python /home/weather1/weather_clean.py",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 420,
+        "y": 400,
+        "wires": [
+            [
+                "2022b8f01db6887e"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e5df61a843dc433c",
+        "type": "debug",
+        "z": "fa5c5d78e9b4e561",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "2d8d8e57099fea28",
+        "type": "debug",
+        "z": "fa5c5d78e9b4e561",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1200,
+        "y": 500,
+        "wires": []
+    }
+]
